@@ -87,7 +87,7 @@ export function Navigation() {
             onClick={() => scrollToSection(item)}
             className={`px-4 py-1.5 text-sm capitalize rounded-full transition-all duration-200 ${
               activeSection === item
-                ? "bg-(--color-accent) text-white font-medium"
+                ? "bg-(--color-accent) text-(--color-surface) font-medium"
                 : "text-(--color-text-secondary) hover:text-(--color-text-primary)"
             }`}
           >
