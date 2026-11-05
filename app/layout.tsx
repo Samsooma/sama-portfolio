@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Product Manager who uses engineering as a superpower to bridge code and cognition.",
   icons: {
-    icon: "/SamaElTahawyLogo.svg",
+    icon: "/SamaElTahawyLogo.png",
   },
 };
 
