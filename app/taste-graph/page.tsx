@@ -5,7 +5,7 @@ import { Footer } from "../components/Footer";
 import { TasteGraph } from "./TasteGraph";
 
 const ARTICLE_URL =
-  "https://medium.com/@theproductlogfeatures/i-let-an-ai-guess-my-tv-history-heres-what-the-data-showed-fc99dd8cbf4b";
+  "https://medium.com/@theproductlogfeatures/i-let-an-ai-guess-my-tv-history-heres-what-the-data-showed-4e5ce0ac0ac7";
 
 export const metadata: Metadata = {
   title: "My TV taste graph | Sama El Tahawy",

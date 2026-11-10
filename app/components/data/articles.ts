@@ -15,7 +15,7 @@ export const articles: Article[] = [
       "I asked an AI to guess every TV show I've watched, then turned about 150 ratings into a taste graph. Here's what the data revealed about how recommendation engines see us.",
     publishDate: "Nov 9, 2026",
     readTime: "9 min read",
-    url: "https://medium.com/@theproductlogfeatures/i-let-an-ai-guess-my-tv-history-heres-what-the-data-showed-fc99dd8cbf4b",
+    url: "https://medium.com/@theproductlogfeatures/i-let-an-ai-guess-my-tv-history-heres-what-the-data-showed-4e5ce0ac0ac7",
     tags: ["Recommendation Systems", "Data Analysis", "AI"],
     secondaryLink: {
       label: "Explore the interactive graph",
