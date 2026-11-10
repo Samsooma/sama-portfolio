@@ -90,7 +90,8 @@ export function TasteGraph() {
       const built = build();
       // forceLink resolves source/target ids to node objects in place
       data = built as unknown as typeof data;
-      H = Math.max(620, Math.round(360 + data.nodes.length * 3.2));
+      // Taller canvas and stronger centering keep nodes off the edges
+      H = Math.max(800, Math.round(500 + data.nodes.length * 4.5));
       svg.attr("viewBox", `0 0 ${W} ${H}`);
       linkSel = root
         .append("g")
@@ -151,9 +152,9 @@ export function TasteGraph() {
             .distance((d) => (d.kind === "spin" ? 34 : 60))
             .strength(0.45)
         )
-        .force("charge", d3.forceManyBody().strength(-140))
-        .force("x", d3.forceX(W / 2).strength(0.05))
-        .force("y", d3.forceY(H / 2).strength(0.06))
+        .force("charge", d3.forceManyBody().strength(-130))
+        .force("x", d3.forceX(W / 2).strength(0.07))
+        .force("y", d3.forceY(H / 2).strength(0.07))
         .force("collide", d3.forceCollide<GNode>((d) => (d.type === "show" ? 18 : 16)))
         .on("tick", () => {
           data.nodes.forEach((d) => {
