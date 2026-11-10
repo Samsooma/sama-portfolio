@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X, Sun, Moon } from "lucide-react";
 
 const NAV_ITEMS = ["home", "about", "articles"] as const;
@@ -36,12 +37,19 @@ function ThemeToggle() {
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const [activeSection, setActiveSection] = useState(isHome ? "home" : "");
   const [scrolled, setScrolled] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: "smooth" });
+    if (!element) {
+      // On other pages, go back to the home page section
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+    element.scrollIntoView({ behavior: "smooth" });
     setIsMenuOpen(false);
   };
 

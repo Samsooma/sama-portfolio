@@ -1,4 +1,27 @@
-export const articles = [
+export type Article = {
+  title: string;
+  excerpt: string;
+  publishDate: string;
+  readTime: string;
+  url: string;
+  tags: string[];
+  secondaryLink?: { label: string; href: string };
+};
+
+export const articles: Article[] = [
+  {
+    title: "I Let an AI Guess My TV History. Here's What the Data Showed.",
+    excerpt:
+      "I asked an AI to guess every TV show I've watched, then turned about 150 ratings into a taste graph. Here's what the data revealed about how recommendation engines see us.",
+    publishDate: "Nov 9, 2026",
+    readTime: "9 min read",
+    url: "https://medium.com/@theproductlogfeatures/i-let-an-ai-guess-my-tv-history-heres-what-the-data-showed-fc99dd8cbf4b",
+    tags: ["Recommendation Systems", "Data Analysis", "AI"],
+    secondaryLink: {
+      label: "Explore the interactive graph",
+      href: "/taste-graph",
+    },
+  },
   {
     title: "Inside TikTok Shop's Three-Layer Marketplace",
     excerpt:

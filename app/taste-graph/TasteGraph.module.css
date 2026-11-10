@@ -1,0 +1,100 @@
+/* Ported from taste-graph.html. Colors are unchanged. The widget keeps its
+   own dark background so its light text stays readable in light mode. */
+.widget {
+  --bg: #0b0b0b;
+  --panel: #141414;
+  --text: #f2f0ea;
+  --muted: #9a978f;
+  --line: rgba(255, 255, 255, 0.18);
+  --border: rgba(255, 255, 255, 0.14);
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 20px;
+  padding: 24px;
+}
+
+.widget * {
+  box-sizing: border-box;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.controls button {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.controls button:global(.on) {
+  background: var(--panel);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.dot {
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+
+.sq {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  margin-right: 6px;
+}
+
+.graph {
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.graph :global(svg) {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.info {
+  font-size: 14px;
+  color: var(--muted);
+  min-height: 44px;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .widget {
+    padding: 14px;
+    border-radius: 16px;
+  }
+}

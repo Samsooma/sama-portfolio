@@ -1,7 +1,56 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowUpRight, BookOpen } from "lucide-react";
-import { articles } from "./data/articles";
+import { articles, type Article } from "./data/articles";
+
+const CARD_CLASSES =
+  "group flex items-start justify-between gap-4 py-6 hover:bg-(--color-surface-secondary)/40 -mx-4 px-4 rounded-xl transition-colors duration-200";
+
+function ArticleCardBody({ article }: { article: Article }) {
+  return (
+    <>
+      <div className="flex-1 min-w-0">
+        <div className="flex flex-wrap items-center gap-2 mb-2">
+          {article.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-xs px-2 py-0.5 rounded-full bg-(--color-accent-subtle) text-(--color-accent) font-medium"
+            >
+              {tag}
+            </span>
+          ))}
+          <span className="text-xs text-(--color-text-tertiary)">
+            {article.publishDate} · {article.readTime}
+          </span>
+        </div>
+
+        <h3 className="font-(family-name:--font-display) text-lg md:text-xl font-bold group-hover:text-(--color-accent) transition-colors duration-200 mb-1">
+          {article.title}
+        </h3>
+
+        <p className="text-sm text-(--color-text-secondary) leading-relaxed line-clamp-2">
+          {article.excerpt}
+        </p>
+
+        {article.secondaryLink && (
+          <Link
+            href={article.secondaryLink.href}
+            className="relative z-10 inline-flex items-center gap-1 mt-2 text-xs font-medium text-(--color-text-tertiary) hover:text-(--color-text-primary) underline-offset-2 hover:underline transition-colors duration-200"
+          >
+            {article.secondaryLink.label}
+            <ArrowUpRight size={12} />
+          </Link>
+        )}
+      </div>
+
+      <ArrowUpRight
+        size={18}
+        className="text-(--color-text-tertiary) group-hover:text-(--color-accent) transition-colors duration-200 shrink-0 mt-2"
+      />
+    </>
+  );
+}
 
 export function ArticlesSection() {
   return (
@@ -23,44 +72,32 @@ export function ArticlesSection() {
 
         {/* Articles — stacked full-width list */}
         <div className="divide-y divide-(--color-border)/50">
-          {articles.map((article, i) => (
-            <a
-              key={i}
-              href={article.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-start justify-between gap-4 py-6 hover:bg-(--color-surface-secondary)/40 -mx-4 px-4 rounded-xl transition-colors duration-200"
-            >
-              <div className="flex-1 min-w-0">
-                <div className="flex flex-wrap items-center gap-2 mb-2">
-                  {article.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs px-2 py-0.5 rounded-full bg-(--color-accent-subtle) text-(--color-accent) font-medium"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  <span className="text-xs text-(--color-text-tertiary)">
-                    {article.publishDate} · {article.readTime}
-                  </span>
-                </div>
-
-                <h3 className="font-(family-name:--font-display) text-lg md:text-xl font-bold group-hover:text-(--color-accent) transition-colors duration-200 mb-1">
-                  {article.title}
-                </h3>
-
-                <p className="text-sm text-(--color-text-secondary) leading-relaxed line-clamp-2">
-                  {article.excerpt}
-                </p>
+          {articles.map((article, i) =>
+            article.secondaryLink ? (
+              // Links can't nest, so this card uses a full-card overlay link
+              // with the secondary link layered above it.
+              <div key={i} className={`relative ${CARD_CLASSES}`}>
+                <a
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={article.title}
+                  className="absolute inset-0 rounded-xl"
+                />
+                <ArticleCardBody article={article} />
               </div>
-
-              <ArrowUpRight
-                size={18}
-                className="text-(--color-text-tertiary) group-hover:text-(--color-accent) transition-colors duration-200 shrink-0 mt-2"
-              />
-            </a>
-          ))}
+            ) : (
+              <a
+                key={i}
+                href={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={CARD_CLASSES}
+              >
+                <ArticleCardBody article={article} />
+              </a>
+            )
+          )}
         </div>
 
         {/* CTA */}
